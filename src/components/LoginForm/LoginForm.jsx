@@ -1,20 +1,22 @@
 // import React, { useState } from "react";
 import './LoginForm.css';
+import { useNavigate } from "react-router-dom";
 import { FaLock, FaUser } from "react-icons/fa";
+import { fetchToken, setToken } from "../utils/Auth";
 import { useState } from "react";
 
 export default function LoginForm(){
+    const navigate = useNavigate();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const [rememberme,setRememberme] = useState("");
     const LoginForm = async (event) => {
-        event.preventDefault
+        event.preventDefault();
         if(email == '' || password == ''){
             console.log("Email and Password cannot be empty");
-            return
+            return;
         }
         try{
-            const response = await fetch('http://localhost:8000/user/login',{
+            const response = await fetch('http://localhost:8000/login',{
                 method : 'POST',
                 headers : {
                     'content-type' : 'application/json'
@@ -24,16 +26,17 @@ export default function LoginForm(){
             });
             if(!response){
                 console.log('Network response not ok');
-                return
+                return;
             }
             const data = await response.json();
             console.log(data);
 
-            // if(data[access_token]){
-            //     Navigate('/Home');
-            // }else{
-            //     console.log('Invalid Token');
-            // }
+            if(data['access_token']){
+                setToken(data['access_token']);
+                navigate('/Home');
+            }else{
+                console.log('Invalid Token');
+            }
 
         } catch (error){
             console.log('Invalid Credetials')
@@ -45,7 +48,7 @@ export default function LoginForm(){
             <form className='login-form' onSubmit={LoginForm}>
                 <h1>Login</h1>
                 <div className="input-box">
-                    <input type="text" placeholder="username" required 
+                    <input type="email" placeholder="username" required 
                     onChange={(e) => setEmail(e.target.value)}/>
                     <FaUser className="icon"/>
                 </div>
@@ -54,10 +57,10 @@ export default function LoginForm(){
                     onChange={(e) => setPassword(e.target.value)} />
                     <FaLock className="icon"/>
                 </div>
-                <div className="remember-forgot">
+                {/* <div className="remember-forgot">
                     <label><input type="checkbox"  onChange={(e) => setRememberme(e.target.checked)}/>Remember me </label>
                     <a href="#"> Forget Password?</a>
-                </div>
+                </div> */}
                 <button type="submit" >Login</button>
                 <div className="register-link">
                     <p>Don't have an account? <a href="/Signup">Signup</a></p>

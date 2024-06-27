@@ -1,0 +1,348 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent vertical scrolling */
+  }
+  
+  .profile-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Use the full viewport height */
+  }
+  
+  .content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .sidebar-styled {
+    width: 250px;
+    background-color: #a4c79d;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    color: white;
+  }
+  
+  .sidebar-top div:first-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-styled button {
+    background-color: #ddfae3;
+    color: rgb(12, 12, 12);
+    border: none;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .sidebar-styled button:hover {
+    background-color: #090909;
+    color: white;
+  }
+  
+  .sidebar-bottom {
+    margin-top: auto;
+  }
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust the value as needed */
+    cursor: pointer;
+    color: black;
+    padding-bottom: 7px;
+  }
+  
+  .sidebar-item:hover {
+    color: #292a29;
+  }
+  
+  .sidebar-options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .main-content {
+    flex: 1;
+    position: relative;
+    background-color: #ddfae3;
+  }
+  
+  .main-content1 {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .navbar-styled {
+    width: 100%;
+    background-color: #a4c79d;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px 20px; 
+  }
+  
+  .navbar-styled p {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+  }
+  
+  .spinner-overlay img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .spinner-overlay .fa-spinner {
+    font-size: 50px; 
+  }
+  
+  .response-container {
+    height: 76vh;
+    width: 80.58vw;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 1vh;
+    background-color: #ddfae3;
+    color: black;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #a4c79d #ddfae3; /* For Firefox */
+  }
+  
+  /* For Webkit-based browsers */
+  .response-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .response-container::-webkit-scrollbar-track {
+    background: #ddfae3;
+  }
+  
+  .response-container::-webkit-scrollbar-thumb {
+    background-color: #a4c79d;
+    border-radius: 10px;
+    /* border: 2px solid #ddfae3; */
+  }
+  
+  .response-value {
+    padding: 5px;
+    margin: 10px 150px;
+    border-radius: 5px;
+    text-align: left; 
+    display: flex;
+    word-wrap: break-word; 
+    word-break: break-word;
+  }
+  
+  .response-value.user {
+    max-width: 40%;
+    align-self: flex-end; 
+    justify-content: flex-end;
+    background-color: #c3eae8;
+  }
+  
+  .response-value.bot {
+    max-width: 40%; /* Adjust max-width to desired value */
+    align-self: flex-start; 
+    justify-content: flex-start;
+    background-color: #d5f0d0;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+    padding: 10px;
+    background-color: #a4c79d;
+    border-radius: 25px;
+    outline: none;
+  }
+  
+  .input-form {
+    display: flex;
+    flex: 1;
+  }
+  
+  .input-field {
+    /* height: 6vh; */
+    flex: 1;
+    margin-right: 5px;
+    padding: 8px;
+    border: none;
+    background-color: #a4c79d;
+    color: black;
+    outline: none;
+    overflow-y: auto; 
+    font-size: 14px;
+    resize: none; /* Prevent resizing */
+    word-wrap: break-word; 
+    word-break: break-word;
+  }
+  
+  .send-button,
+  .signout-button {
+    padding: 8px 16px;
+    border-radius: 15px;
+  }
+  
+  .paperclip-icon {
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 20px;
+    color: white;
+  }
+  
+  .tooltip {
+    position: fixed;
+    top: 3%;
+    left: 50%;
+    height: 5%;
+    width: 100%;
+    transform: translateX(-50%);
+    background-color: #cac3c3;
+    color: rgb(13, 13, 13);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+  
+  .message-icon.bot{
+    color: #03153a;
+    margin-right: 10px;
+  }
+  
+  .message-icon.user{
+    margin-right: 10px;
+    color: #ff9f22;
+  }
+  
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: #383737;
+    padding: 20px;
+    border-radius: 10px;
+    outline: none;
+    width: 300px;
+    max-width: 100%;
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .modal-content .sidebar-item {
+    color: white;
+    cursor: pointer;
+  }
+  
+  .modal-content .sidebar-item:hover {
+    color: #090909;
+  }
+  
+  .popup-box {
+    position: absolute;
+    bottom: 50px; 
+    left: 10px;
+    background-color: #ddfae3;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    margin-bottom: 15px;
+  }
+  
+  .popup-box .sidebar-item {
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .popup-box .sidebar-item:hover {
+    background-color: #555555;
+  }
+  
+  .emailIcon{
+    color: #03153a;
+  }
+  
+  .signoutIcon{
+    color: blue;
+  }
+  
+  .disabled {
+    color: #aaa; 
+    cursor: not-allowed; 
+    background-color: transparent; 
+    pointer-events: none; 
+  }
+  
+  .disabled:hover {
+    color: #aaa;
+    background-color: transparent; 
+  }
+  
+  .disabled .emailIcon {
+    color: #aaa;
+  }
+  
+  .disabled .emailIcon:hover {
+    color: #aaa; 
+  }
+  
