@@ -8,7 +8,8 @@ html, body {
   .profile-page {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Use the full viewport height */
+    height: 100vh; 
+    width: 100%;
   }
   
   .content-wrapper {
@@ -18,7 +19,7 @@ html, body {
   }
   
   .sidebar-styled {
-    width: 250px;
+    width: 200px;
     background-color: #a4c79d;
     padding: 20px;
     display: flex;
@@ -174,17 +175,26 @@ html, body {
   }
   
   .response-value.user {
-    max-width: 40%;
-    align-self: flex-end; 
-    justify-content: flex-end;
+    /* max-width: 40%; */
+    align-self: flex-start; 
+    justify-content: flex-start;
     background-color: #c3eae8;
+    margin-bottom: 0.2px;
   }
   
   .response-value.bot {
-    max-width: 40%; /* Adjust max-width to desired value */
+    /* max-width: 40%;  */
     align-self: flex-start; 
     justify-content: flex-start;
     background-color: #d5f0d0;
+    margin-bottom: 2%;
+  }
+
+  .message-icon {
+    width: 20px; 
+    height: 20px; 
+    margin-right: 10px; 
+    flex-shrink: 0; /* Prevent icon from shrinking */
   }
   
   .input-container {
@@ -229,15 +239,15 @@ html, body {
     cursor: pointer;
     margin-right: 10px;
     margin-left: 20px;
-    color: white;
+    color: rgb(8, 8, 8);
   }
   
   .tooltip {
     position: fixed;
     top: 3%;
     left: 50%;
-    height: 5%;
-    width: 100%;
+    height: 10%;
+    width: 90%;
     transform: translateX(-50%);
     background-color: #cac3c3;
     color: rgb(13, 13, 13);
@@ -246,6 +256,8 @@ html, body {
     z-index: 1000;
     opacity: 0.9;
     pointer-events: none;
+    text-align: center;
+    justify-content: center;
   }
   
   .message-icon.bot{

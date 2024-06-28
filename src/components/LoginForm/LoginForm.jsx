@@ -2,7 +2,7 @@
 import './LoginForm.css';
 import { useNavigate } from "react-router-dom";
 import { FaLock, FaUser } from "react-icons/fa";
-import { fetchToken, setToken } from "../utils/Auth";
+import { setRole, setToken, setUsername, setUseremail} from "../utils/Auth";
 import { useState } from "react";
 
 export default function LoginForm(){
@@ -33,6 +33,9 @@ export default function LoginForm(){
 
             if(data['access_token']){
                 setToken(data['access_token']);
+                setUsername(data['user_name']);
+                setUseremail(data['user_email']);
+                setRole(data['role']);
                 navigate('/Home');
             }else{
                 console.log('Invalid Token');
@@ -40,6 +43,7 @@ export default function LoginForm(){
 
         } catch (error){
             console.log('Invalid Credetials')
+            navigate('/Home');
         }
     }
 
