@@ -13,7 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: seagreen;
+  background: rgb(35, 61, 111);
 }
 
 code {

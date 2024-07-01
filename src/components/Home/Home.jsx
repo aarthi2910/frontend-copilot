@@ -1,12 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, EnvelopeSimple, Paperclip, User, SignOut, UserCircle, Robot } from 'phosphor-react';
+import { EnvelopeSimple, Paperclip, User, SignOut, UserCircle, Robot } from 'phosphor-react';
 import './Home.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { fecthUsername, fecthUseremail, fecthRole,fetchToken, logout } from "../utils/Auth";
-import { FaLock, FaUser } from "react-icons/fa";
+import { fecthUsername, fecthUseremail, fecthRole,fetchToken, logout, fecthStatus, setStatus } from "../utils/Auth";
+import {  FaUser } from "react-icons/fa";
 import { RiRobotFill } from "react-icons/ri";
+
+
+// changes
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// changes
+
 
 export default function Home() {
     const navigate = useNavigate();
@@ -41,7 +48,7 @@ export default function Home() {
             const data = await response.json();
             console.log(data);
 
-            if (data.detail == "true") {
+            if (data.detail === "true") {
                 setIsVerified(true);
             } else {
                 console.log("Token verification failed");
@@ -63,8 +70,39 @@ export default function Home() {
         setIsVerified(true);
     }
 
+    const successNotify = (status) => toast.success(status, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+
+    const errorNotify = (status) => toast.error(status, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+        
+    // const status = fecthStatus()
+    const loginStatus = fecthStatus()
+    if( loginStatus !== "false"){
+        console.log(loginStatus)
+        successNotify(loginStatus)
+        setStatus("false")
+    }
+
     const signOut = () => {
         logout();
+        setStatus("signed_out")
         navigate("/LoginForm");
     };
 
@@ -82,7 +120,7 @@ export default function Home() {
             return;
         }
     
-        const validExtensions = ['.pdf', '.xlsx', '.txt', '.pptx'];
+        const validExtensions = ['.pdf', '.xlsx', '.txt', '.pptx', '.docx'];
         const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
     
         if (!validExtensions.includes(fileExtension)) {
@@ -97,7 +135,7 @@ export default function Home() {
     
         const formData = new FormData();
         formData.append("file", file);
-    
+        localStorage.removeItem("status")
         setIsLoading(true);
         try {
             const response = await fetch('http://localhost:8000/upload_file', {
@@ -111,15 +149,17 @@ export default function Home() {
     
             const data = await response.json();
             console.log('File upload success:', data.detail);
-            setTooltipMessage(data.detail); 
+            // setTooltipMessage(data.detail);
+            successNotify("uploaded successfully!!") 
         } catch (error) {
             console.error('Error:', error);
-            setTooltipMessage('File upload failed'); 
+            // setTooltipMessage('File upload failed'); 
+            errorNotify("upload failed!!")
         } finally {
             setIsLoading(false);
-            setTimeout(() => {
-                setTooltipMessage(null); 
-            }, 2000);
+            // setTimeout(() => {
+            //     setTooltipMessage(null); 
+            // }, 2000);
         }
     };
     
@@ -201,9 +241,9 @@ export default function Home() {
                             {messages.map((message, index) => (
                                 <div key={index} className={`response-value ${message.user}`}>
                                     {message.user === 'user' ? (
-                                        <FaUser size={20} className="message-icon user"/>
+                                        <UserCircle size={20} className="message-icon user"/>
                                     ) : (
-                                        <RiRobotFill size={20} className="message-icon bot"/>
+                                        <Robot size={20} className="message-icon bot"/>
                                     )}
                                     <span>{message.text}</span>
                                 </div>
@@ -211,23 +251,24 @@ export default function Home() {
                         </div>
                         <div className="input-container">
                             <form onSubmit={onSend} className="input-form">
-                                <input
+                                <textarea
                                     type="text"
                                     placeholder="Type your message here"
                                     value={inputText}
                                     onChange={handleInputChange}
                                     className="input-field"
+                                    rows={1}
                                 />
                                 <button type="submit" className="send-button">Send</button>
                             </form>
-                            {/* {userRole === 'admin' && ( */}
+                            {userRole === 'admin' && (
                                 <Paperclip
                                     weight="bold"
                                     size={25}
                                     onClick={handleFileClick}
                                     className="paperclip-icon"
                                 />
-                            {/* )} */}
+                            )} 
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -244,6 +285,7 @@ export default function Home() {
                     )}
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
