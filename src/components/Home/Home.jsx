@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { EnvelopeSimple, Paperclip, User, SignOut, UserCircle, Robot } from 'phosphor-react';
+import {Plus, EnvelopeSimple, Paperclip, User, SignOut, UserCircle, Robot } from 'phosphor-react';
 import './Home.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -163,8 +163,6 @@ export default function Home() {
         }
     };
     
-    
-
     const onSend = async (event) => {
         event.preventDefault();
         console.log("Text:", inputText);
@@ -202,6 +200,10 @@ export default function Home() {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const handleUserManagement = () => {
+        navigate('/UserManagement');
+    };
+
     return (
         <div className="profile-page">
             <div className="content-wrapper">
@@ -212,9 +214,10 @@ export default function Home() {
                 )}
                 <aside className='sidebar-styled'>
                 
-                    {/* <div className='sidebar-top'>
-                        <button className='sidebar-item'><Plus weight='bold' size={20} /> New chat</button>
-                    </div> */}
+                     <div className='sidebar-top'>
+                        <button className='sidebar-item' onClick={handleUserManagement}>User Management</button>
+                        {/* <button className='sidebar-item'><Plus weight='bold' size={20} /> New chat</button> */}
+                    </div>
                     <div className='sidebar-bottom'>
                         <div className='sidebar-item' onClick={toggleSidebar}>
                             <User weight='bold' size={20} /> {username}

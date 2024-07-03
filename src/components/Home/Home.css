@@ -21,7 +21,8 @@ html, body {
 
 .sidebar-styled {
   width: 230px;
-  background-color: rgb(5, 17, 39);
+  /* background-color: rgb(5, 17, 39); */
+  background: #a4c79d;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -45,7 +46,7 @@ html, body {
 
 .sidebar-styled button {
   background-color: #ddfae3;
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
   border: none;
   padding: 15px 25px;
   display: flex;
@@ -57,7 +58,7 @@ html, body {
 }
 
 .sidebar-styled button:hover {
-  background-color: #090909;
+  background-color: #d6f2d1;
   color: white;
 }
 
@@ -70,9 +71,10 @@ html, body {
   align-items: center;
   gap: 15px; /* Adjust the value as needed */
   cursor: pointer;
-  color: rgb(149, 209, 244);
+  color: black;
   padding: 7px;
-  background-color: rgb(23, 41, 77);
+  /* background-color: rgb(23, 41, 77); */
+  background: #d6f2d1;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-radius: 5%;
   transition: 0.5s;
@@ -80,7 +82,8 @@ html, body {
 
 .sidebar-item:hover {
   color: #55e8ff;
-  background-color: rgb(35, 61, 111);
+  /* background-color: rgb(35, 61, 111); */
+  background: #a4c79d;
 }
 
 .sidebar-options {
@@ -94,7 +97,7 @@ html, body {
 .main-content {
   flex: 1;
   position: relative;
-  background-color: rgb(10, 24, 54);
+  /* background-color: rgb(10, 24, 54); */
   display: flex;
   flex-direction: column;
 }
@@ -103,11 +106,13 @@ html, body {
   flex: 1;
   padding: 20px;
   position: relative;
+  background: #d6f2d1;
 }
 
 .navbar-styled {
   width: 100%;
-  background-color: rgb(9, 26, 60);
+  /* background-color: rgb(9, 26, 60); */
+  background: #a4c79d;
   color: #3e8fad;
   display: flex;
   justify-content: space-between;
@@ -153,7 +158,8 @@ html, body {
   margin-left: 0;
   margin-top: 0;
   margin-bottom: 2vh;
-  background-color: rgb(9, 26, 60);
+  /* background-color: rgb(9, 26, 60); */
+  background: #a4c79d;
   color: black;
   overflow-y: auto;
   padding: 10px;
@@ -240,7 +246,8 @@ html, body {
   outline: none;
 
   /* From https://css.glass */
-  background: rgba(9, 26, 60, 0.31);
+  /* background: rgba(9, 26, 60, 0.31); */
+  background-color: #a4c79d;
   border-radius: 6px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3.2px);
@@ -260,7 +267,7 @@ html, body {
   padding: 8px;
   border: none;
   background-color: #e5ffe0;
-  color: rgb(154, 255, 255);
+  color: white;
   outline: none;
   font-size: 14px;
   resize: none; /* Prevent resizing by the user */
@@ -368,7 +375,8 @@ html, body {
   position: absolute;
   bottom: 50px;
   left: 10px;
-  background-color: rgb(9, 26, 60);
+  /* background-color: rgb(9, 26, 60); */
+  background: #ddfae3;
   color: rgb(78, 217, 255);
   padding: 10px;
   border-radius: 5px;

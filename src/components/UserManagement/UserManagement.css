@@ -1,0 +1,69 @@
+.user-management {
+    /* display: flex; */
+    width: 70vw;
+    flex-direction: column;
+    margin-left: 0; /* Ensure there's no auto margin pushing it to the center */
+    padding: 1rem; /* Optional: Add padding for spacing */
+    overflow-y: auto;
+    margin: 5%;
+}
+
+.table {
+    width: 100%; /* Set width to 100% to fill the container */
+    margin-bottom: 1rem;
+    border: 1px solid #a4c79d; /* Use border instead of border-color */
+}
+
+.user-management h1{
+    color: #a4c79d;
+    text-align: center;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table th {
+    background-color: #a4c79d;
+    text-align: left;
+}
+
+.table tbody {
+    background-color: white;
+    border:1px solid #a4c79d;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.search-input {
+    margin-bottom: 1rem;
+    padding: 8px;
+    width: 100%; /* Set width to 100% to match the table */
+    box-sizing: border-box;
+}
+
+.user-management .back-button{
+    width: 10%;
+    height: 35px;
+    background:#a4c79d;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    margin: 2px;
+}

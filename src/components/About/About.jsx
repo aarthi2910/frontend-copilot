@@ -7,7 +7,7 @@ const About = () => {
         <div className="about-page">
             <h1>About Us</h1>
             <h3>Knowledge Base</h3>
-            <p>This is the version of the Knowledge Base</p>
+            <p>VARPHI KBI ALPHA</p>
         </div>
     )
 }

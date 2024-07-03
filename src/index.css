@@ -13,7 +13,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: rgb(35, 61, 111);
+  /* background: #ddfae3; */
+  /* background: #a4c79d; */
+  background: #d6f2d1;
+    /* background: #2c332c;
+    background: #f3fef0;
+    background: #ddfae3;
+    background: #d9fdd8; */
 }
 
 code {

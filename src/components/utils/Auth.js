@@ -46,3 +46,22 @@ export const logout = () => {
     localStorage.removeItem('role');
     localStorage.removeItem('status');
 };
+
+export async function fetchUsers() {
+    const response = await fetch('http://localhost:8000/users'); 
+    console.log(response);
+    if (!response.detail) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.detail;
+}
+
+export async function deleteUser() {
+    const response = await fetch('http://localhost:8000/user_delete'); 
+    if (!response.detail) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.detail;
+}
