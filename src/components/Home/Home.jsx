@@ -53,12 +53,12 @@ export default function Home() {
             } else {
                 console.log("Token verification failed");
                 logout(localStorage);
-                navigate('/LoginForm');
+                navigate('/');
             }
         } catch (error) {
             console.error("Token verification failed:", error);
             logout(localStorage);
-            navigate('/LoginForm');
+            navigate('/');
         } 
     };
     useEffect(() => {
@@ -103,7 +103,7 @@ export default function Home() {
     const signOut = () => {
         logout();
         setStatus("signed_out")
-        navigate("/LoginForm");
+        navigate("/");
     };
 
     const handleInputChange = (event) => {
@@ -215,7 +215,9 @@ export default function Home() {
                 <aside className='sidebar-styled'>
                 
                      <div className='sidebar-top'>
-                        <button className='sidebar-item' onClick={handleUserManagement}>User Management</button>
+                        {/* {userRole === 'admin' && ( */}
+                            <button className='sidebar-item' onClick={handleUserManagement}>User Management</button>
+                        {/* )} */}
                         {/* <button className='sidebar-item'><Plus weight='bold' size={20} /> New chat</button> */}
                     </div>
                     <div className='sidebar-bottom'>

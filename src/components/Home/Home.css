@@ -113,7 +113,7 @@ html, body {
   width: 100%;
   /* background-color: rgb(9, 26, 60); */
   background: #a4c79d;
-  color: #3e8fad;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
