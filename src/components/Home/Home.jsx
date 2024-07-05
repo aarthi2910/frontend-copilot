@@ -203,6 +203,9 @@ export default function Home() {
     const handleUserManagement = () => {
         navigate('/UserManagement');
     };
+    const handleAboutUs= () => {
+        navigate('/About');
+    };
 
     return (
         <div className="profile-page">
@@ -213,8 +216,8 @@ export default function Home() {
                     </div>
                 )}
                 <aside className='sidebar-styled'>
-                
                      <div className='sidebar-top'>
+                        <button className='sidebar-item' onClick={handleAboutUs}> About Us </button>
                         {/* {userRole === 'admin' && ( */}
                             <button className='sidebar-item' onClick={handleUserManagement}>User Management</button>
                         {/* )} */}
@@ -240,6 +243,7 @@ export default function Home() {
                 <div className="main-content">
                     <nav className="navbar-styled">
                         <p>Knowledge Base</p>
+                        <button className='navbar-styled-item' onClick={handleAboutUs}>About Us</button>
                     </nav>
                     <div className="main-content1">
                         <div className="response-container">

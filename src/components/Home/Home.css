@@ -67,7 +67,8 @@ html, body {
 }
 
 .sidebar-item {
-  display: flex;
+  width: 100%;
+  /* display: flex; */
   align-items: center;
   gap: 15px; /* Adjust the value as needed */
   cursor: pointer;
@@ -120,7 +121,19 @@ html, body {
   box-sizing: border-box;
   padding: 15px 15px;
   padding-left: 38%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); */
+}
+
+.navbar-styled-item{
+  background-color: #ddfae3;
+  /* color: rgb(0, 0, 0); */
+  border: none;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+
 }
 
 .navbar-styled p {

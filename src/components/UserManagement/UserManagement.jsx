@@ -5,10 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash,faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { fetchUsers } from '../utils/Auth';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //change 
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 //change
+
+const mockUser = [{ 'username': "aa", "email" : "aarthi@unwita.com" , "role" : "user"},
+    { 'username': "bb", "email" : "ai@unwita.com" , "role" : "admin"},
+    { 'username': "cc", "email" : "a@unwita.com" , "role" : "admin"}
+];
+
 
 export default function UserManagement() {
     const [data, setData] = useState([]);
@@ -18,6 +28,17 @@ export default function UserManagement() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentRowData, setCurrentRowData] = useState({ username: '', email: '', role: '' });
     //change
+
+    const successNotify = (status) => toast.success(status, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
 
     //change
     const openModal = (row) => {
@@ -61,6 +82,7 @@ export default function UserManagement() {
             }
             const data = await response.json();
             console.log(data.detail);
+            localStorage.setItem('editUser', data.detail);
             window.location.reload();
 
         } catch (error){
@@ -73,14 +95,8 @@ export default function UserManagement() {
     useEffect(() => {
         async function loadData() {
             try {
-                const users = await fetchUsers();
-                console.log(users);
-                console.log(users.length);
-                for (let i = 0; i < users.length; i++) {
-                    console.log("entered");
-                    console.log(users[i]);
-                }
-                setData(users);
+                // const users = await fetchUsers();
+                setData(mockUser);
             } catch (error) {
                 console.error("Failed to fetch users:", error);
             } finally {
@@ -88,6 +104,17 @@ export default function UserManagement() {
             }
         }
         loadData();
+        const deleteflashMessage = localStorage.getItem('deleteUser');
+        if (deleteflashMessage) {
+            successNotify(deleteflashMessage);
+            localStorage.removeItem('deleteUser'); // Clear the message after displaying it
+        }
+        const editflashMessage = localStorage.getItem('editUser');
+        if (editflashMessage) {
+            successNotify(editflashMessage);
+            localStorage.removeItem('editUser'); // Clear the message after displaying it
+            
+        }
     }, []);
 
     const columns = React.useMemo(
@@ -100,11 +127,11 @@ export default function UserManagement() {
                 Cell: ({ row }) => (
                     <>
                         {/* change */}
-                        <button onClick={() => openModal(row.original)}>
+                        <button onClick={() => { openModal(row.original)}} className='edit-user-button'>
                             <FontAwesomeIcon icon={faEdit} />
                         </button>
                         {/* change */}
-                        <button onClick={() => handleDelete(row.original.email)}>
+                        <button onClick={() => handleDelete(row.original.email)} className='delete-user-button'>
                             <FontAwesomeIcon icon={faTrash} />
                         </button>
                     </>
@@ -122,22 +149,29 @@ export default function UserManagement() {
             return;
         }
         try {
-             const response = await fetch('http://localhost:8000/user_delete',{
-                method : 'POST',
-                headers : {
-                    'content-type' : 'application/json'
-                },
-                body : JSON.stringify({email})
-             }); 
-             console.log(response);
+            //  const response = await fetch('http://localhost:8000/user_delete',{
+            //     method : 'POST',
+            //     headers : {
+            //         'content-type' : 'application/json'
+            //     },
+            //     body : JSON.stringify({email})
+            //  }); 
+            //  console.log(response);
 
-            if (!response) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
+            // if (!response) {
+            //     throw new Error('Network response was not ok');
+            // }
+            // const data = await response.json();
+            const data = mockUser;
+            console.log(data);
+            setData(data.filter(user => user.email !== email));
+
+            // localStorage.setItem('deleteUser', data.detail);
 
             // Reload the page
-            window.location.reload();
+            // window.location.reload(); 
+            
+            
             return data.detail;
             
         } catch (error) {
@@ -167,7 +201,6 @@ export default function UserManagement() {
 
     return (
         <div className='user-management'>
-            <button onClick={() => navigate('/Home')} className="back-button">Back</button>
             <input
                 value={globalFilter || ""}
                 onChange={e => setGlobalFilter(e.target.value || undefined)}
@@ -197,19 +230,22 @@ export default function UserManagement() {
                     })}
                 </tbody>
             </table>
-            <div className="pagination">
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    Previous
-                </button>
-                <span>
-                    Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>
-                </span>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    Next
-                </button>
+            <div className='pagination-container'>
+                <button onClick={() => navigate('/Home')} className="back-button">Back</button>
+                <div className="pagination">
+                    <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                        Previous
+                    </button>
+                    <span>
+                        Page{' '}
+                        <strong>
+                            {pageIndex + 1} of {pageOptions.length}
+                        </strong>
+                    </span>
+                    <button onClick={() => nextPage()} disabled={!canNextPage}>
+                        Next
+                    </button>
+                </div>
             </div>
             {/* change */}
             <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Edit User"
@@ -235,6 +271,7 @@ export default function UserManagement() {
                     <button type="button" onClick={closeModal}>Cancel</button>
                 </form>
             </Modal>
+            <ToastContainer />
         </div>
     );
 }

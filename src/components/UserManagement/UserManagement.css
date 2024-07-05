@@ -35,19 +35,34 @@
     border:1px solid #a4c79d;
 }
 
-.pagination {
+.pagination-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
+}
+
+.back-button {
+    width: 10%;
+    height: 35px;
+    background: #a4c79d;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    margin: 2px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .pagination button {
     margin: 0 5px;
     padding: 5px 10px;
     cursor: pointer;
-    align-items: flex-end;
-    justify-content: flex-end;
 }
 
 .search-input {
@@ -55,17 +70,6 @@
     padding: 8px;
     width: 100%; /* Set width to 100% to match the table */
     box-sizing: border-box;
-}
-
-.user-management .back-button{
-    width: 10%;
-    height: 35px;
-    background:#a4c79d;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    color: white;
-    margin: 2px;
 }
 
 
@@ -159,6 +163,14 @@
     z-index: 999; /* Ensure the overlay has a high z-index */
 }
 
+.edit-user-button{
+    margin: 5px;
+    padding: 2px;
+}
+.delete-user-button {
+    margin: 5px;
+    padding: 2px;
+}
 /* change */
 
 
