@@ -3,7 +3,7 @@ import './About.css';
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
-    const navigate = useNavigate;
+    const navigate = useNavigate();
 
     return(
         <div className="about">
@@ -12,9 +12,8 @@ const About = () => {
                 <h3>Knowledge Base</h3>
                 <p>VARPHI KBI ALPHA</p>
             </div>
-            <button onClick={() => navigate('/Home')} className="back-button">Back</button>
+            <button onClick={() => navigate('/Home')} className="about-back-button">Back</button>
         </div>
-        
     )
 }
 

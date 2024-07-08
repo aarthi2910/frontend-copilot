@@ -217,7 +217,7 @@ export default function Home() {
                 )}
                 <aside className='sidebar-styled'>
                      <div className='sidebar-top'>
-                        <button className='sidebar-item' onClick={handleAboutUs}> About Us </button>
+                        {/* <button className='sidebar-item' onClick={handleAboutUs}> About Us </button>/ */}
                         {/* {userRole === 'admin' && ( */}
                             <button className='sidebar-item' onClick={handleUserManagement}>User Management</button>
                         {/* )} */}

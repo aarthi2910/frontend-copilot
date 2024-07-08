@@ -104,11 +104,11 @@ export default function UserManagement() {
             }
         }
         loadData();
-        const deleteflashMessage = localStorage.getItem('deleteUser');
-        if (deleteflashMessage) {
-            successNotify(deleteflashMessage);
-            localStorage.removeItem('deleteUser'); // Clear the message after displaying it
-        }
+        // const deleteflashMessage = localStorage.getItem('deleteUser');
+        // if (deleteflashMessage) {
+        //     successNotify(deleteflashMessage);
+        //     localStorage.removeItem('deleteUser'); // Clear the message after displaying it
+        // }
         const editflashMessage = localStorage.getItem('editUser');
         if (editflashMessage) {
             successNotify(editflashMessage);
@@ -143,41 +143,36 @@ export default function UserManagement() {
     );
 
     const handleDelete = async (email) => {
-        console.log(email)
+        console.log(email);
         const confirmed = window.confirm(`Are you sure you want to delete this user?`);
-        if(!confirmed){
+        if (!confirmed) {
             return;
         }
         try {
-            //  const response = await fetch('http://localhost:8000/user_delete',{
-            //     method : 'POST',
-            //     headers : {
-            //         'content-type' : 'application/json'
-            //     },
-            //     body : JSON.stringify({email})
-            //  }); 
-            //  console.log(response);
-
-            // if (!response) {
-            //     throw new Error('Network response was not ok');
-            // }
-            // const data = await response.json();
-            const data = mockUser;
-            console.log(data);
-            setData(data.filter(user => user.email !== email));
-
+            const response = await fetch('http://localhost:8000/user_delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            });
+            console.log(response);
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            successNotify(data.details);
+            setData(prevData => prevData.filter(user => user.email !== email));
+    
             // localStorage.setItem('deleteUser', data.detail);
-
-            // Reload the page
-            // window.location.reload(); 
-            
-            
+    
             return data.detail;
-            
         } catch (error) {
             console.error("Failed to delete user:", error);
         }
     };
+    
 
     const { getTableProps,getTableBodyProps, headerGroups, prepareRow,page,canPreviousPage,
         canNextPage,pageOptions, state: { pageIndex, globalFilter }, setGlobalFilter,nextPage, previousPage,
